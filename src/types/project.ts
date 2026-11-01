@@ -1,7 +1,18 @@
 export type MediaFit = 'contain' | 'cover'
 export type ProjectImage = { src: string; alt: string; caption?: string; description?: string; mediaFit?: MediaFit }
 export type ProjectMetric = { value: string; label: string; note?: string }
-export type EngineeringStory = { title: string; body?: string[] }
+export type ProjectMedia = {
+  images?: ProjectImage[]
+  mediaFit?: MediaFit
+  // Relative to src/assets/. Overrides accept exact filenames or basenames.
+  mediaFolder?: string
+  mediaOverrides?: Record<string, Partial<Omit<ProjectImage, 'src'>>>
+}
+export type EngineeringStory = ProjectMedia & {
+  title: string
+  body?: string[]
+  calculations?: string[]
+}
 export type ProjectChapter = {
   type: 'chapter'
   title: string
@@ -15,9 +26,6 @@ export type ProjectChapter = {
   // Relative to src/assets/, e.g. project-media/baja/01-design.
   mediaFolder?: string
   mediaOverrides?: Record<string, Partial<Omit<ProjectImage, 'src'>>>
-  // Optional captions by alphabetical folder position, for images added later.
-  // Exact filename overrides above take precedence.
-  mediaSequenceOverrides?: Partial<Omit<ProjectImage, 'src'>>[]
 }
 
 export type ProjectSection =
@@ -34,7 +42,7 @@ export interface Project {
   shortTitle?: string
   subtitle: string
   organization?: string
-  role: string
+  role?: string
   date?: string
   category: string
   heroImage?: ProjectImage
@@ -47,5 +55,8 @@ export interface Project {
   status?: string
   tags: string[]
   featured?: boolean
+  // A title-less, visual-first gallery for projects with confirmed media but no
+  // written case-study content yet.
+  gallery?: ProjectMedia
   sections: ProjectSection[]
 }

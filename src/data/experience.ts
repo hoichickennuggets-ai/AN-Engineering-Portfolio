@@ -7,6 +7,7 @@ export interface IndustryExperience {
   role: string
   period: string
   summary: string
+  overview?: string[]
   tags: string[]
   sections?: ProjectSection[]
   heroImage?: ProjectImage
@@ -35,9 +36,11 @@ export const experiences: IndustryExperience[] = [
         title: "Workflow / Problem",
         mediaFolder: "experience-media/agentic-innovations/01-workflow",
         body: [
-          "At Agentic Innovations, I worked on agentic tools for patent analysis and engineering BOM sourcing.",
-          "The patent-analysis workflow searched and verified patent information before comparing technical features and possible overlap.",
-          "CASE worked on a different problem: taking engineering BOM requirements and figuring out which suppliers could actually meet them based on manufacturing capability, material availability, and the evidence available."
+          "The patent-analysis tool was built around finding relevant patent information, verifying it, and then comparing technical features and possible overlap.",
+          "CASE was a different problem. An engineering BOM can tell you what parts you need, but it does not automatically tell you which suppliers can actually make them."
+        ],
+        bodyAfterMedia: [
+          "The workflow had to turn the BOM into requirements that could be compared against supplier manufacturing capability, material availability, and the evidence we could find for those claims."
         ]
       },
       {
@@ -46,9 +49,12 @@ export const experiences: IndustryExperience[] = [
         title: "Development & Validation",
         mediaFolder: "experience-media/agentic-innovations/02-development",
         body: [
-          "I used Codex to help build CASE's system architecture and workflow.",
-          "The system took BOM information, turned it into structured engineering requirements, and compared those requirements against supplier information.",
-          "I also worked on validation test cases to check supplier capability and refine the sourcing criteria before results were returned for engineer review."
+          "I used Codex to help build out CASE's system architecture and workflow.",
+          "The system took BOM information and converted it into a more structured engineering model before comparing those requirements against supplier information."
+        ],
+        bodyAfterMedia: [
+          "I also worked on validation test cases. The point was not just getting CASE to return a supplier; we wanted to check whether the supplier actually had the right capability and whether there was enough evidence to support the recommendation.",
+          "That testing helped us refine the sourcing criteria and gave us a way to check the workflow before putting the results in front of an engineer."
         ]
       },
       {
@@ -58,9 +64,16 @@ export const experiences: IndustryExperience[] = [
         mediaFolder: "experience-media/agentic-innovations/03-validation",
         body: [
           "Our team was selected from roughly 10 teams to present CASE to engineers from Toyota, NVIDIA, Apple, and the NSA.",
-          "We walked through how the system handled engineering requirements, supplier validation, and the evidence used to support its sourcing recommendations."
+          "We walked through how the system processed engineering requirements, how supplier capability was checked, and how evidence was carried into the sourcing recommendations."
+        ],
+        bodyAfterMedia: [
+          "For me, the interesting part was working on a software tool where the output still had to make sense to an engineer. A confident answer was not useful if there was no way to verify why the system gave it."
         ]
       }
+    ],
+    overview: [
+      "At Agentic Innovations, I worked on agentic AI tools that were aimed at engineering problems instead of general chatbot-type tasks.",
+      "Most of my work was split between patent analysis and CASE, a BOM-sourcing platform that compared engineering requirements against supplier capability and the evidence available for those suppliers."
     ]
   },
   {
@@ -83,8 +96,11 @@ export const experiences: IndustryExperience[] = [
         title: "Building Layouts & Drawing Review",
         mediaFolder: "experience-media/encotech",
         body: [
-          "At Encotech, I worked in Autodesk Revit on electrical outlet layouts and interior floor plans, checking the layouts against existing engineering drawings.",
-          "I also reviewed plumbing BOMs and spent time shadowing engineers while they worked through HVAC system design."
+          "Encotech was my first real look at how engineering work moves through a professional building-design environment.",
+          "I worked in Autodesk Revit on electrical outlet layouts and interior floor plans, then checked those layouts against existing engineering drawings."
+        ],
+        bodyAfterMedia: [
+          "I also reviewed plumbing BOMs and spent time shadowing engineers as they worked through HVAC system design. I was still early in engineering school at the time, so a lot of the value for me was seeing how drawings, BOMs, and different building systems fit together on an actual project."
         ]
       }
     ]

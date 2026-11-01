@@ -49,7 +49,7 @@ export function ProjectSlideshow({ images, label, mediaFit = 'contain' }: { imag
       }}>
       <figure id={slideId} className="slideshow-slide" role="group" aria-roledescription="slide" aria-label={`${currentIndex + 1} of ${images.length}`}>
         <ImageTile image={image} fit={image.mediaFit ?? mediaFit} priority={currentIndex === 0} onOpen={() => setLightbox(true)} />
-        <figcaption>{image.caption || image.alt}{image.description && <span className="slide-description">{image.description}</span>}</figcaption>
+        <figcaption><span className="slide-caption">{image.caption || image.alt}</span>{image.description && <span className="slide-description">{image.description}</span>}</figcaption>
       </figure>
     </div>
     {images.length > 1 && <div className="slideshow-controls">

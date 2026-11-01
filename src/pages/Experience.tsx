@@ -24,7 +24,7 @@ export function ExperienceDetail() {
     <header className={`experience-hero${experience.heroImage ? ' experience-hero-with-media' : ''}`}>
       <div><p className="eyebrow">Industry Experience</p><h1>{experience.organization}</h1>
         <p className="experience-role">{experience.role}</p><p className="experience-period">{experience.period}</p>
-        <p className="experience-description">{experience.summary}</p><Tags tags={experience.tags} />
+        <div className="experience-description">{(experience.overview ?? [experience.summary]).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div><Tags tags={experience.tags} />
       </div>
       {experience.heroImage && <div className="experience-hero-image"><ImageTile image={experience.heroImage} priority /></div>}
     </header>

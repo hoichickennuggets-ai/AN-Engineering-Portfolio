@@ -41,7 +41,8 @@
 .button:hover, .hero .button:hover, .button-light:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 .button-secondary, .hero .button-secondary { background: var(--surface); color: var(--accent-ink); border-color: var(--border-strong); }
 .button-secondary:hover, .hero .button-secondary:hover { background: #fff; color: var(--accent-hover); border-color: var(--accent-strong); }
-.hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; margin: 0; border: 1px solid var(--border-strong); border-radius: 4px; overflow: hidden; background: var(--surface); }
+.hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; margin: 0; border: 0; border-radius: 4px; overflow: hidden; background: var(--background); }
+.hero-photo::after, .project-hero-image-wide::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, var(--background), transparent 4%, transparent 96%, var(--background)), linear-gradient(0deg, var(--background), transparent 4%, transparent 96%, var(--background)); }
 .hero-photo-slide { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 180ms ease-out; }
 .hero-photo-slide.is-active { opacity: 1; }
 .featured { background: transparent; }
@@ -110,16 +111,12 @@
 .slideshow-controls button:hover:not(:disabled) { background: var(--surface-blue); border-color: var(--accent-strong); }
 .slideshow-controls button:disabled { opacity: .45; cursor: default; }
 
-/* Native modal provides focus containment, Escape, and an inert background. */
-.engineering-story { max-width: 70ch; margin-block: 16px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 4px; background: var(--surface); }
-.engineering-story summary { padding: 12px 16px; min-height: 44px; cursor: pointer; color: var(--accent-ink); font-weight: 650; overflow-wrap: anywhere; }
-.engineering-story > .chapter-copy { padding: 0 16px 4px; }
-.engineering-story p { white-space: pre-line; overflow-wrap: anywhere; }
 .project-summary p + p { margin-top: 16px; }
 .chapter-copy-after-media { margin-top: 28px; }
 .project-hero-image-wide, .project-hero-image-wide .media { height: auto; aspect-ratio: 16 / 10; }
 .project-hero-image-wide .media img { padding: 0; object-fit: contain; }
 
+/* Native modal provides focus containment, Escape, and an inert background. */
 dialog.lightbox { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; border: 0; padding: 24px; background: transparent; color: var(--text-primary); }
 dialog.lightbox:not([open]) { display: none; }
 dialog.lightbox::backdrop { background: #27323aeb; }
@@ -200,7 +197,8 @@ dialog.lightbox::backdrop { background: #27323aeb; }
   .hero-bio { max-width: 54ch; margin-block: 16px 22px; font-size: .94rem; line-height: 1.62; }
   .hero-actions { gap: 8px; }
   .hero-actions .button { min-height: 44px; padding: 10px 15px; font-size: .82rem; }
-  .hero-photo { max-width: 390px; justify-self: end; }
+  .hero-with-photo { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; }
+  .hero-photo { max-width: 440px; aspect-ratio: 1.05; justify-self: start; }
   .hero-photo { max-height: 420px; }
 
   .page-section { padding-block: 56px; }

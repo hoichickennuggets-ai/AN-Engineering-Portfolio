@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 
-const intervalMs = 1500
+const intervalMs = 4000
 
 export function HomeHeroSlideshow({ images, alt }: { images: string[]; alt: string }) {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
@@ -15,9 +15,10 @@ export function HomeHeroSlideshow({ images, alt }: { images: string[]; alt: stri
   }, [hasMultipleImages, images.length, reducedMotion])
 
   if (!images.length) return null
+  const activeIndex = reducedMotion ? 0 : index % images.length
   const displayedImages = reducedMotion ? images.slice(0, 1) : images
   return <figure className="hero-photo" aria-live="off">
-    {displayedImages.map((src, imageIndex) => <img key={src} src={src} alt={imageIndex === index ? alt : ''}
-      className={`hero-photo-slide${imageIndex === index ? ' is-active' : ''}`} loading={imageIndex === 0 ? 'eager' : 'lazy'} decoding="async" draggable={false} />)}
+    {displayedImages.map((src, imageIndex) => <img key={src} src={src} alt={imageIndex === activeIndex ? alt : ''}
+      className={`hero-photo-slide${imageIndex === activeIndex ? ' is-active' : ''}`} loading={imageIndex === 0 ? 'eager' : 'lazy'} decoding="async" draggable={false} />)}
   </figure>
 }

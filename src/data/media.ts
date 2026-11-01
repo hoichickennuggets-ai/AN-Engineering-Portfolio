@@ -1,4 +1,4 @@
-import type { Project, ProjectChapter, ProjectImage } from '../types/project'
+import type { Project, ProjectMedia, ProjectImage } from '../types/project'
 
 // Shared discovery for all projects/experiences. Vite emits base-aware asset URLs.
 const files = import.meta.glob<string>(
@@ -20,16 +20,20 @@ export function filenameCaption(filename: string): string {
   return words.charAt(0).toUpperCase() + words.slice(1)
 }
 
-export function chapterImages(chapter: ProjectChapter): ProjectImage[] {
+export function chapterImages(chapter: ProjectMedia): ProjectImage[] {
   const overrides = chapter.mediaOverrides ?? {}
+  const metadata = (filename: string) => ({
+    ...overrides[filename.replace(/\.[^.]+$/, '')],
+    ...overrides[filename],
+  })
   const explicit = (chapter.images ?? []).map(image => {
     const filename = image.src.split('/').pop() ?? ''
-    return { filename, image: { ...image, ...overrides[filename] } }
+    return { filename, image: { ...image, ...metadata(filename) } }
   })
   const folderFiles = mediaByFolder[chapter.mediaFolder ?? ''] ?? []
-  const discovered = folderFiles.map(({ filename, src }, index) => {
+  const discovered = folderFiles.map(({ filename, src }) => {
     const caption = filenameCaption(filename)
-    return { filename, image: { src, alt: caption, caption, ...chapter.mediaSequenceOverrides?.[index], ...overrides[filename] } }
+    return { filename, image: { src, alt: caption, caption, ...metadata(filename) } }
   })
   const seen = new Set<string>()
   // Preserve curated metadata when a numbered copy of a legacy file is added.

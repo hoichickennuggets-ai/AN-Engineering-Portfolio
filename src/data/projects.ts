@@ -6,8 +6,8 @@ export const projectLibrary = {
   intro: 'Each project summarizes its objective, key decisions, process, and supporting evidence.',
 }
 
-// EDIT PROJECT TEXT HERE. Chapter mediaFolder paths connect to drop-in image folders.
-// mediaOverrides use exact filenames. mediaSequenceOverrides apply by alphabetical folder position.
+// EDIT PROJECT TEXT HERE. Chapter/story mediaFolder paths connect to drop-in folders.
+// mediaOverrides accept exact filenames or basenames without extensions.
 export const projects: Project[] = [
   {
     slug: "baja-sae-chassis",
@@ -39,39 +39,24 @@ export const projects: Project[] = [
         eyebrow: "01",
         title: "Initial Design",
         body: [
-          "When we first started laying out the chassis, there was no previous Longhorn Baja car to build off of, so a lot of the early work came down to design intuition and comparing different ways to brace the frame.",
-          "I explored a front-braced rear roll-hoop layout and a heavily cross-braced floor design. The main goal was getting good triangulation and load transfer without throwing extra tubes everywhere and making the chassis unnecessarily heavy."
+          "When we first started laying out the chassis, there was no previous Longhorn Baja car to build off of, so a lot of the first few designs came down to intuition and seeing what different ways of bracing the car would actually look like.",
+          "I spent some time looking at a front-braced rear roll hoop and also drew a floor with a lot of cross-bracing. At that point I was trying to get good load paths without solving everything by adding another tube and making the chassis heavier."
         ],
         bodyAfterMedia: [
-          "The first sketch looked at bringing the rear bracing forward while keeping the seat low in the chassis. I was also thinking about keeping the driver's weight as low as possible and leaving enough room around the seat and surrounding systems.",
-          "The floor went through a similar process. Three of us submitted separate concepts. Mine used a lot of cross-bracing, another concept used very little, and my lead combined parts of both into a simpler design. We kept removing tubing as the chassis developed and eventually ended up with more of a ladder-style floor with two lateral support tubes."
+          "For the roll-hoop concept, I was looking at bringing the rear bracing forward while still leaving enough space for the seat. I also wanted the seat and driver weight to stay as low as we could reasonably get them.",
+          "The floor was a team process. Three of us each came up with our own layouts. Mine had a lot of cross-bracing, another design had very little, and my lead eventually combined parts of the ideas into something much simpler. As the rest of the chassis developed, we kept removing tubing until the floor looked much more like a ladder frame with two lateral support tubes."
         ],
         engineeringStories: [
           {
-            title: "Floor design evolution",
+            title: "Tube Selection",
             body: [
-              "My first floor concept had a lot of triangulation because I was trying to get as much support as possible without really knowing yet how much of it we would actually need.",
-              "Three of us submitted different floor concepts. One design used very little cross-bracing, mine used a lot, and my lead combined the useful parts of the concepts into something simpler.",
-              "As the rest of the chassis developed, we kept removing tubing. The final floor ended up closer to a ladder-style layout with two lateral support tubes.",
-              "For our car, that gave us a simpler load path for vertical loading while reducing weight and making the floor much easier to manufacture. The rest of the roll cage still gave the chassis its three-dimensional structure, so the floor did not need to be filled with diagonal members."
-            ]
-          },
-          {
-            title: "Tube selection",
-            body: [
-              "Weight was a major consideration from the beginning. For bending, moving material farther away from the neutral axis is more efficient than simply making the wall thicker.",
-              "For the same bending strength, a larger-diameter tube can use a thinner wall and still have a higher section modulus. Using the rules minimum wall thickness of 0.062 in, a 1.25 in OD tube gave the strength we needed while keeping the amount of material low.",
-              "For comparison, a 1.25 in OD × 0.062 in wall tube has a section modulus of about 0.0655 in³. A 1.00 in OD tube would need roughly a 0.120 in wall to reach the same section modulus.",
-              "That works out to roughly:",
-              "1.25 × 0.062 tube: 0.786 lb/ft",
-              "1.00 × 0.120 tube: 1.13 lb/ft",
-              "So the larger, thinner-wall tube uses about 30% less material for approximately the same bending strength.",
-              "That became part of how we approached the rest of the frame: use larger OD tubing where the rules and loading made sense, then keep the wall as thin as the rules allowed instead of adding weight through thicker tubing."
-            ]
-          },
-          {
-            title: "Tube-selection math",
-            body: [
+              "Weight was a major consideration from the beginning. One of the things we looked at was how to get the bending strength we needed without putting more steel into the frame than we had to.",
+              "For bending, moving material farther away from the neutral axis is more efficient than just making the wall thicker. The rules required at least a 0.062 in wall, so using that minimum wall with a 1.25 in OD tube made a lot of sense.",
+              "For comparison, a 1.25 in OD × 0.062 in wall tube has a section modulus of about 0.0655 in³. A 1.00 in OD tube would need roughly a 0.120 in wall to get to the same section modulus.",
+              "That works out to about 0.786 lb/ft for the larger thin-wall tube compared with about 1.13 lb/ft for the smaller tube with the thicker wall. For roughly the same bending strength, the smaller tube would use about 30% more material.",
+              "That became part of how we thought about the rest of the frame: use the larger OD where it made sense, then keep the wall as thin as the rules and loading allowed instead of getting strength by adding wall thickness."
+            ],
+            calculations: [
               "I = π/64 (D⁴ - d⁴)\n\nS = I / (D/2)\n\nd = D - 2t",
               "D = 1.25 in\nt = 0.062 in",
               "I ≈ 0.0409 in⁴\nS ≈ 0.0655 in³",
@@ -80,20 +65,24 @@ export const projects: Project[] = [
             ]
           }
         ],
-        mediaSequenceOverrides: [
-          {
+        mediaOverrides: {
+          "01-floor-concept": {
+            caption: "Early floor-bracing concept",
+            description: "My first floor concept used much heavier cross-bracing. Three of us explored separate layouts before parts of the designs were combined and simplified into the ladder-style floor used later in the chassis.",
+            alt: "Early floor-bracing concept",
+            mediaFit: "contain"
+          },
+          "02-roll-hoop-concept": {
             caption: "Early roll hoop concept research",
             description: "Early front-braced rear roll-hoop concept looking at rear bracing, load transfer, seat position, and keeping the driver's weight low in the chassis.",
             alt: "Early roll hoop concept research",
             mediaFit: "contain"
           },
-          {
-            caption: "Early floor-bracing concept",
-            description: "My first floor concept used much heavier cross-bracing. Three of us explored separate layouts before parts of the designs were combined and simplified into the ladder-style floor used later in the chassis.",
-            alt: "Early floor-bracing concept",
-            mediaFit: "contain"
+          "03-first-complete-chassis-iteration": {
+            caption: "First complete chassis design iteration before the later weight-reduction and integration changes.",
+            alt: "First complete chassis design iteration before the later weight-reduction and integration changes."
           }
-        ]
+        }
       },
       {
         type: "chapter",
@@ -101,10 +90,8 @@ export const projects: Project[] = [
         eyebrow: "02",
         title: "CAD & Analysis",
         body: [
-          "Once the basic layout was established, most of the chassis development happened in SolidWorks.",
-          "The chassis was built parametrically so dimensions and tube locations could change without rebuilding the entire frame. As the design changed, I used ANSYS to check the major chassis load cases and see where tubing could realistically be removed or downsized.",
-          "The main load cases included approximately 10,000 lbf frontal/rear loading, 1,400 lbf suspension loading, and engine-mount loading.",
-          "That process helped reduce the chassis from roughly 96 lb to 65 lb."
+          "Once we had a layout that made sense, most of the chassis development moved into SolidWorks. I built the frame parametrically so we could move tubes and change dimensions without having to rebuild the entire chassis every time something else on the car changed.",
+          "The chassis ended up going through 12 major iterations. As it changed, I used ANSYS to look at the major load cases and figure out where tubing was actually doing useful work and where we were just carrying extra weight."
         ],
         metrics: [
           {
@@ -132,7 +119,17 @@ export const projects: Project[] = [
             alt: "Side-view SolidWorks CAD profile of the Longhorn Baja SAE chassis",
             caption: "Side-view chassis CAD showing the frame and packaging envelope."
           }
-        ]
+        ],
+        bodyAfterMedia: [
+          "The main cases included roughly 10,000 lbf frontal and rear loading, about 1,400 lbf at the suspension mounts, and loading around the engine support. The analysis helped us remove members and downsize tubing where it made sense.",
+          "By the later iterations, the chassis had gone from roughly 96 lb to about 65 lb, which was around a 31% reduction."
+        ],
+        mediaOverrides: {
+          "01-first-complete-chassis-iteration": {
+            caption: "First complete chassis design iteration before the later weight-reduction and integration changes.",
+            alt: "First complete chassis design iteration before the later weight-reduction and integration changes."
+          }
+        }
       },
       {
         type: "chapter",
@@ -140,10 +137,23 @@ export const projects: Project[] = [
         eyebrow: "03",
         title: "System Integration",
         body: [
-          "The chassis was made around the other systems that had to fit into it.",
-          "Suspension mounting points had to line up with the chassis structure, the seat had to fit at the correct angle, and the rear of the frame had to leave enough room for the engine and CVT while still letting us remove them later.",
-          "Keeping the chassis parametric made this easier because changes could be checked against the surrounding systems before we started cutting tubing."
-        ]
+          "The chassis could not really be designed on its own because almost every other mechanical system eventually had to touch it.",
+          "The suspension mounting points had to land in places where the chassis could actually support them. The seat had to sit at the right angle without putting the driver too high, and the rear of the frame had to leave room for the engine and CVT while still letting us get them back out of the car."
+        ],
+        bodyAfterMedia: [
+          "That was one of the reasons keeping the chassis parametric helped so much. If powertrain, suspension, or ergo needed something moved, we could update the frame and check what else that change affected before anybody started cutting tubing.",
+          "Toward the end of the build, a lot of the work became making sure the finished chassis actually worked with the people designing the systems around it, not just making sure the frame looked good by itself."
+        ],
+        mediaOverrides: {
+          "01-working-with-subsystems": {
+            caption: "Working with powertrain, ergonomics, and suspension members around the completed chassis during vehicle integration.",
+            alt: "Working with powertrain, ergonomics, and suspension members around the completed chassis during vehicle integration."
+          },
+          "02-painted-rear-integration": {
+            caption: "Rear of the painted chassis with powertrain and suspension components installed.",
+            alt: "Rear of the painted chassis with powertrain and suspension components installed."
+          }
+        }
       },
       {
         type: "chapter",
@@ -151,51 +161,113 @@ export const projects: Project[] = [
         eyebrow: "04",
         title: "Fabrication",
         body: [
-          "Fabrication had to be planned around the fact that we did not know if we would have a permanent shop.",
-          "The jigs were made to be portable and easy to recreate on whatever welding table we had access to. CAD geometry was used to locate fixture points, while straight tubes were cut and notched in-house. More complicated bent tubes were ordered from VR3 Engineering.",
-          "After the tubes were fitted and jigged, I used TIG welding to tack chassis members in place."
+          "Fabrication changed the way we looked at a lot of the CAD. A joint could look completely fine on the computer and still be a pain to actually make with the tools we had.",
+          "We also did not know if we were going to have a permanent garage, so the jigging could not depend on one table staying set up for months. We made the fixtures portable and used locations from the CAD so the setup could be recreated on whatever welding table we had access to."
         ],
         engineeringStories: [
           {
-            title: "Designing around the tube notcher",
+            title: "Designing Around the Tube Notcher",
             body: [
-              "A lot of the CAD could technically be manufactured, but not with the notcher we actually had.",
-              "The manual notcher could only rotate to roughly 40° and worked best when the cut stayed in one plane. Compound notches quickly became difficult to make accurately.",
-              "As the chassis developed, tube joints were changed so more of the cuts stayed within a single cutting plane.",
-              "Instead of figuring out manufacturing after CAD was finished, the capability of the notcher became one of the constraints we designed around."
+              "The tube notcher became one of those constraints that sounds small until you actually start making the car.",
+              "Ours could only rotate to roughly 40°, and it worked best when the notch stayed in one plane. A lot of joints that were easy to model became much harder once the cut started wrapping around multiple axes.",
+              "As the chassis changed, we started designing more of the joints around what the notcher could actually make. Wherever we could, we kept the cuts in one plane instead of relying on complicated compound notches.",
+              "It was one of the first times on the project where manufacturing stopped being something that happened after the CAD and started becoming part of how I thought about the CAD itself."
             ]
           },
           {
             title: "Chassis Support Stands",
             body: [
-              "I also designed a pair of A-frame stands for the chassis to sit on while we work on the car.",
-              "The stands use the same 1.00 in OD × 0.035 in wall secondary tubing used on the chassis.",
-              "Even though the chassis load should normally be split between two stands, I designed each individual stand around a 300 lb load by itself to give us extra margin.",
-              "I modeled the stand in SolidWorks and ran a beam FEA before fabrication.",
-              "The 300 lb case produced approximately 152 MPa maximum upper-bound axial/bending stress compared with the displayed 460 MPa yield strength, giving an approximate factor of safety of 3.0.",
-              "Maximum displacement was approximately 1.1 mm.",
-              "The original design passed the analysis, so I kept it. The stands are currently waiting to be fabricated once we have garage space."
-            ]
+              "We also needed a way to get the chassis off the ground while we worked underneath and around the car, so I designed a pair of A-frame stands using the same 1.00 in OD × 0.035 in wall secondary tubing used on the chassis.",
+              "Realistically, the weight of the car should be split across two stands. I still analyzed one stand with the full 300 lb load by itself so I knew one stand could handle much more than the load we expected it to see.",
+              "I modeled the stand in SolidWorks and ran a beam FEA before we committed to building it. The 300 lb case gave about 152 MPa maximum upper-bound axial and bending stress compared with the displayed 460 MPa yield strength, which works out to an approximate factor of safety of 3.0.",
+              "Maximum displacement was about 1.1 mm. The first design passed the analysis, so I did not change it just for the sake of changing it. The stands are ready to be fabricated once we have garage space again."
+            ],
+            mediaFolder: "project-media/baja/05-support-stands",
+            mediaFit: "contain",
+            mediaOverrides: {
+              "01-stand-fea-exaggerated": {
+                caption: "SolidWorks beam FEA of one chassis support stand under the full 300 lb load. Deformation is exaggerated approximately 68.9× so the deflected shape is visible.",
+                alt: "SolidWorks beam FEA of one chassis support stand under the full 300 lb load. Deformation is exaggerated approximately 68.9× so the deflected shape is visible."
+              },
+              "02-stand-fea-1to1": {
+                caption: "The same 300 lb stand study shown at a 1:1 deformation scale.",
+                alt: "The same 300 lb stand study shown at a 1:1 deformation scale."
+              }
+            }
           }
         ],
-        mediaSequenceOverrides: [
-          {
-            caption: "SolidWorks beam FEA of one chassis support stand under a 300 lb load. Deformation is exaggerated approximately 68.9× for visualization.",
-            alt: "SolidWorks beam FEA of one chassis support stand under a 300 lb load. Deformation is exaggerated approximately 68.9× for visualization.",
-            mediaFit: "contain"
+        bodyAfterMedia: [
+          "Straight tubes were cut and notched in-house. The more complicated bent members were sent to VR3 Engineering, so we had to make drawings and a primary-tube BOM that they could use for bending.",
+          "A lot of the final fit-up still came down to physically working with the tubes. I used the notcher, cleaned up fits with an angle grinder when needed, and TIG tack welded members once everything was sitting correctly in the jig."
+        ],
+        mediaOverrides: {
+          "01-finished-tube-notch": {
+            caption: "Finished tube notch after fitting the member to its mating tube.",
+            alt: "Finished tube notch after fitting the member to its mating tube."
           },
-          {
-            caption: "The same 300 lb stand study shown at a 1:1 deformation scale.",
-            alt: "The same 300 lb stand study shown at a 1:1 deformation scale.",
-            mediaFit: "contain"
+          "02-tig-welding-chassis": {
+            caption: "TIG tack welding during chassis fabrication.",
+            alt: "TIG tack welding during chassis fabrication."
+          },
+          "03-primary-roll-cage-progress": {
+            caption: "Primary roll-cage structure during fabrication before the remaining chassis members were added.",
+            alt: "Primary roll-cage structure during fabrication before the remaining chassis members were added."
+          },
+          "04-angle-grinding-fitup": {
+            caption: "Cleaning up a notched tube with an angle grinder to improve the fit before welding.",
+            alt: "Cleaning up a notched tube with an angle grinder to improve the fit before welding."
+          },
+          "05-using-tube-notcher": {
+            caption: "Using the manual tube notcher that drove many of the single-plane joint decisions in the chassis.",
+            alt: "Using the manual tube notcher that drove many of the single-plane joint decisions in the chassis."
+          },
+          "06-welded-lbr-chris-gift": {
+            caption: "TIG-welded LBR and Chris lettering made as a farewell gift during the build season.",
+            alt: "TIG-welded LBR and Chris lettering made as a farewell gift during the build season."
+          },
+          "07-vr3-primary-bom-drawing": {
+            caption: "Primary-tube BOM and bending drawing prepared for VR3 Engineering.",
+            alt: "Primary-tube BOM and bending drawing prepared for VR3 Engineering."
           }
-        ]
+        }
       }
     ],
     overview: [
       "When we started the chassis, we did not have an older Longhorn Baja car to build from, so a lot of the early work came from trying different layouts and seeing what actually made sense for the rules, weight, packaging, and how we were going to manufacture it.",
       "The roll cage went through 12 major iterations before the design was finalized. The final chassis dropped from about 96 lb to 65 lb while still accounting for the suspension, powertrain, seat, service access, and the equipment we had available to fabricate it."
     ]
+  },
+  {
+    slug: "dragster",
+    title: "Dragster Design",
+    category: "Vehicle Design",
+    subtitle: "CAD and engineering drawing from a dragster design project.",
+    summary: "CAD and engineering drawing from a dragster design project.",
+    overview: [],
+    tags: [
+      "CAD",
+      "Engineering Drawing",
+      "Vehicle Design"
+    ],
+    gallery: {
+      mediaFolder: "project-media/dragster/01-gallery",
+      mediaFit: "contain",
+      mediaOverrides: {
+        "01-dragster-cad": {
+          caption: "Dragster CAD — View 1",
+          alt: "Dragster CAD — View 1"
+        },
+        "02-dragster-cad": {
+          caption: "Dragster CAD — View 2",
+          alt: "Dragster CAD — View 2"
+        },
+        "03-dragster-engineering-drawing": {
+          caption: "Dragster Engineering Drawing",
+          alt: "Dragster Engineering Drawing"
+        }
+      }
+    },
+    sections: []
   },
   {
     slug: "react-mission",
@@ -225,8 +297,11 @@ export const projects: Project[] = [
         eyebrow: "01",
         title: "Experimental Hardware",
         body: [
-          "For REACT, I lead a small internal hardware team and work with the physics and electronics teams on the mechanical side of the experiment.",
-          "A lot of the work is designing the parts that hold sensors, electronics, and test hardware in place without making the experiment harder to assemble or adding unnecessary magnetic interference."
+          "My role is mostly on the mechanical side of the experiment. I work on sensor supports, test-board hardware, electronics packaging, and whatever else needs to physically hold the setup together.",
+          "A lot of the parts are small, but their position still matters. The hardware has to keep the experiment where the physics and electronics teams expect it to be while also being easy enough to print, assemble, remove, and change when the setup evolves."
+        ],
+        bodyAfterMedia: [
+          "That has made REACT a little different from Baja for me. Instead of designing around large structural loads, a lot more of the work comes down to packaging, tolerances, material choice, and making sure a mechanical part does not interfere with what the experiment is actually trying to measure."
         ]
       },
       {
@@ -235,8 +310,11 @@ export const projects: Project[] = [
         eyebrow: "02",
         title: "Magnetic Compatibility & Packaging",
         body: [
-          "Because the experiment is looking at magnetic interference, we also have to think about what the mechanical hardware itself is made from.",
-          "I have worked on 3D-printed sensor mounts and snap-fit fastening concepts so we can reduce unnecessary steel hardware around the sensitive parts of the setup while still keeping everything positioned correctly."
+          "Because the experiment is studying magnetic interference, we also have to pay attention to what the hardware itself is made from.",
+          "Putting unnecessary steel close to the magnetometer would make the mechanical setup part of the problem. Because of that, I have worked on 3D-printed sensor mounts and snap-fit fastening ideas that let us hold parts in place without automatically reaching for another steel screw."
+        ],
+        bodyAfterMedia: [
+          "That does not mean every piece of metal disappears. It just means material choice has to be something I think about earlier than I normally would on a mechanical project."
         ]
       },
       {
@@ -245,11 +323,8 @@ export const projects: Project[] = [
         eyebrow: "03",
         title: "Damping Development",
         body: [
-          "The test board also needed a way to reduce vibration getting into the experiment.",
-          "My first idea was basically a cup of viscous fluid with the table leg sitting inside it. It was simple, but the leg still had too much room to move around and could potentially tip, so I moved away from that design pretty quickly.",
-          "The second version spread the load over a larger base and added a press-fit slot for the table leg. This constrained the leg while allowing vibration to be dissipated through the surrounding fluid.",
-          "The third version added holes through the bottom of the damper so 3D-printed pins could snap into the wooden base plate and hold the damper in place.",
-          "Those pins ended up being too brittle and kept breaking. For the fourth iteration, I changed the pins to a more tapered geometry to reduce local stress concentrations and distribute the load more evenly."
+          "The damping legs started from a really simple idea: put the table leg into a container of viscous fluid and let the fluid absorb some of the vibration.",
+          "The first version was basically just that. The problem was that the leg still had too much room to move around inside the container, so the table could still wiggle and potentially tip."
         ],
         mediaFit: "contain",
         images: [
@@ -268,8 +343,39 @@ export const projects: Project[] = [
             alt: "Prototype liquid damping legs supporting the Texas Spacecraft Laboratory test board",
             caption: "Physical damping-leg prototypes supporting the experimental test board."
           }
-        ]
+        ],
+        bodyAfterMedia: [
+          "For the second iteration, I made the fluid holder much taller. The idea was to increase the fluid column height and the pressure around the leg while still using the viscous fluid to help dissipate vibration.",
+          "The third iteration focused more on actually securing the damper to the test setup. I added snap-fit pins so the damping leg could attach to the wooden base plate instead of just sitting on top of it.",
+          "Those pins ended up being too brittle and kept breaking. For the fourth iteration, I changed the pins to a more tapered shape so the geometry did not create such a sharp local stress concentration and the load could spread more gradually through the pin."
+        ],
+        mediaOverrides: {
+          "01-iteration-1-fluid-cup": {
+            caption: "Iteration 1 — simple viscous-fluid cup. The leg still had too much lateral freedom.",
+            alt: "Iteration 1 — simple viscous-fluid cup. The leg still had too much lateral freedom."
+          },
+          "02-iteration-2-increased-pressure": {
+            caption: "Iteration 2 — taller fluid holder used to increase the fluid column height and pressure around the table leg.",
+            alt: "Iteration 2 — taller fluid holder used to increase the fluid column height and pressure around the table leg."
+          },
+          "03-iteration-3-snap-fit": {
+            caption: "Iteration 3 — snap-fit pins added so the damping leg could attach directly to the test-board base.",
+            alt: "Iteration 3 — snap-fit pins added so the damping leg could attach directly to the test-board base."
+          },
+          "04-iteration-3-snap-fit-with-base": {
+            caption: "Iteration 3 snap-fit concept shown together with the wooden base-plate interface.",
+            alt: "Iteration 3 snap-fit concept shown together with the wooden base-plate interface."
+          },
+          "05-iteration-4-tapered-snap-pins": {
+            caption: "Iteration 4 — tapered snap-fit pins developed after the earlier pins proved too brittle and repeatedly broke.",
+            alt: "Iteration 4 — tapered snap-fit pins developed after the earlier pins proved too brittle and repeatedly broke."
+          }
+        }
       }
+    ],
+    overview: [
+      "For REACT, I lead a small internal hardware team and work with the physics and electronics teams on the mechanical side of the experiment.",
+      "A lot of the project is making hardware that holds the experiment together without the hardware itself becoming another variable we have to worry about."
     ]
   },
   {
@@ -296,10 +402,10 @@ export const projects: Project[] = [
         type: "chapter",
         mediaFolder: "project-media/engine-model/01-mechanisms",
         eyebrow: "01",
-        title: "Mechanism",
+        title: "Crankshaft & Mechanism",
         body: [
-          "I built the model with a group of friends mainly to get a better look at how the parts inside an engine actually interact.",
-          "The first stage focused on the crankshaft and the parts connected to it before the rest of the casing went on."
+          "We started with the crankshaft and the parts directly connected to it before hiding everything behind the casing.",
+          "That was probably the most useful part of the build for me because we could rotate the mechanism by hand and actually watch the motion transfer through the engine instead of looking at each component by itself."
         ],
         images: [
           {
@@ -315,7 +421,8 @@ export const projects: Project[] = [
         eyebrow: "02",
         title: "Internal Assembly",
         body: [
-          "As more of the engine came together, we could see how the crankshaft, pistons, flywheel, and surrounding parts worked together instead of only looking at them individually."
+          "As more parts went on, the individual mechanisms started looking like an actual engine.",
+          "With the crankshaft, pistons, and flywheel all installed, we could check the movement through the assembly before closing it up. Building it in that order made it much easier to understand which parts were driving the motion and which parts were there to support or contain the mechanism."
         ],
         images: [
           {
@@ -331,7 +438,8 @@ export const projects: Project[] = [
         eyebrow: "03",
         title: "Completed Model",
         body: [
-          "We finished the model by installing the remaining casing and external components around the internal mechanism."
+          "Once the internal mechanism was working correctly, we installed the remaining casing and external parts.",
+          "The finished model was not something we designed from scratch, but assembling it gave me a much better physical understanding of how a small engine goes together and how the internal components interact once everything is packaged into the final housing."
         ],
         images: [
           {
@@ -339,8 +447,18 @@ export const projects: Project[] = [
             alt: "Completed assembled model internal combustion engine",
             caption: "Completed 2-stroke engine model with casing and external components installed."
           }
-        ]
+        ],
+        mediaOverrides: {
+          "02-engine-model-fan": {
+            caption: "Fan component from the 2-stroke engine model build.",
+            alt: "Fan component from the 2-stroke engine model build."
+          }
+        }
       }
+    ],
+    overview: [
+      "I built the 2-stroke engine model with a group of friends because I wanted to see how the pieces I normally looked at in diagrams actually moved together as a mechanism.",
+      "It was a much simpler project than Baja or REACT, but physically assembling it made the relationship between the crankshaft, pistons, flywheel, and the rest of the engine much easier to visualize."
     ]
   },
   {
@@ -370,16 +488,25 @@ export const projects: Project[] = [
         eyebrow: "01",
         title: "Intake Concept",
         body: [
-          "The goal for the intake project was a 5% improvement in engine output.",
-          "I designed a 3D-printed velocity stack for a Predator 79 cc engine using a bellmouth to reduce inlet losses while also looking at inertial charging and intake pressure-wave behavior.",
-          "Helmholtz-type resonance was used as part of the intake-length design instead of just making a funnel and hoping it helped."
+          "The idea was not just to make a smoother funnel for the intake. I wanted the shape and length of the stack to actually help get more air into the engine.",
+          "The bellmouth was there to reduce the losses as air entered the intake. From there, I looked at the intake as a pressure-wave problem too. Inertial charging helps keep the air moving into the cylinder, while Helmholtz-type resonance can create a positive pressure wave near the intake event if the runner length is in the right range."
         ],
         metrics: [
           {
             value: "5%",
             label: "Target improvement"
           }
-        ]
+        ],
+        bodyAfterMedia: [
+          "The target we set was a 5% improvement. I worked through the initial geometry and hand calculations before moving into CAD, then used those numbers as the starting point instead of just guessing at the runner length."
+        ],
+        mediaOverrides: {
+          "01-initial-intake-hand-calculations": {
+            caption: "Initial Intake Hand Calculations",
+            description: "Initial hand calculations used to size the velocity-stack concept before moving into CAD.",
+            alt: "Initial Intake Hand Calculations"
+          }
+        }
       },
       {
         type: "chapter",
@@ -387,9 +514,8 @@ export const projects: Project[] = [
         eyebrow: "02",
         title: "Prototype Development",
         body: [
-          "The first prototype took about 18 hours to print and came out successfully, but the design was too large and the fit around the engine intake was too loose.",
-          "We tried using a makeshift O-ring to help seal the interface, but the first version still had tolerance problems.",
-          "For the second prototype, I shortened the design and tightened the interface around the intake."
+          "The first prototype took about 18 hours to print and the print itself came out successfully. The problem showed up when we tried to put it on the engine.",
+          "The intake side was too large, so the fit was loose even after we tried using a makeshift O-ring to help seal it. The stack was also physically larger than it needed to be."
         ],
         mediaFit: "contain",
         images: [
@@ -399,16 +525,10 @@ export const projects: Project[] = [
             caption: "Intake CAD developed around engine-packaging and manufacturing constraints."
           }
         ],
-        engineeringStories: [
-          {
-            title: "Tighter was not always better",
-            body: [
-              "The tighter second prototype fit the intake much better when the engine was cold.",
-              "After running the engine during testing, I noticed that the intake heated up and expanded slightly. The stack was noticeably harder to remove after testing than it had been when we first installed it.",
-              "It was a small real-world example of thermal expansion becoming important even when the dimensional change itself was tiny.",
-              "If I made another version, I would intentionally leave a small amount of clearance and use a compliant O-ring or similar seal rather than relying on a very tight plastic-to-metal fit."
-            ]
-          }
+        bodyAfterMedia: [
+          "For the second version, I shortened the design and tightened the tolerance around the engine intake. That version fit much better and was easier to manufacture.",
+          "The second prototype also taught me that tighter is not automatically better. After running the engine, the metal intake heated up and expanded slightly. The dimensional change was tiny, but it was enough that the velocity stack took noticeably more effort to remove after testing than it did when the engine was cold.",
+          "If I made another version, I would leave a little more intentional clearance and design around a compliant O-ring instead of relying on a very tight plastic-to-metal fit."
         ]
       },
       {
@@ -417,8 +537,8 @@ export const projects: Project[] = [
         eyebrow: "03",
         title: "Testing & Result",
         body: [
-          "The final prototype was mounted to the engine and tested using a Hall-effect sensor to measure RPM.",
-          "Testing went up to approximately 2,000 RPM. Across the measured range, the engine produced an average torque increase of 7.2%, compared with our original 5% target."
+          "Once the second prototype fit correctly, we mounted it to the Predator engine and used a Hall-effect sensor to keep track of RPM during testing.",
+          "We tested the engine up to roughly 2,000 RPM. Across the measured range, the final intake produced a 7.2% average torque increase."
         ],
         metrics: [
           {
@@ -441,8 +561,37 @@ export const projects: Project[] = [
             alt: "3D-printed intake velocity stack installed on a Predator 79 cc engine",
             caption: "Velocity-stack prototype installed on the Predator 79 cc engine for testing."
           }
-        ]
+        ],
+        bodyAfterMedia: [
+          "Our original target was 5%, so the prototype beat the goal. Just as important for me, the project went from calculations, to CAD, to a physical part, and then to an actual measured result instead of stopping once the part looked good on the engine."
+        ],
+        mediaOverrides: {
+          "01-installed-velocity-stack": {
+            caption: "Final velocity-stack prototype installed on the Predator 79 cc engine for testing.",
+            alt: "Final velocity-stack prototype installed on the Predator 79 cc engine for testing."
+          },
+          "02-engine-project-presentation-group": {
+            caption: "Presenting the completed engine-intake project in the engineering building.",
+            alt: "Presenting the completed engine-intake project in the engineering building."
+          },
+          "03-engine-project-presentation-group": {
+            caption: "Project group with the completed engine-intake presentation.",
+            alt: "Project group with the completed engine-intake presentation."
+          },
+          "velocity stack presentation solo pic": {
+            caption: "Presenting the completed engine-intake project in the engineering building.",
+            alt: "Presenting the completed engine-intake project in the engineering building."
+          },
+          "velocity stack presentation group pic": {
+            caption: "Project group with the completed engine-intake presentation.",
+            alt: "Project group with the completed engine-intake presentation."
+          }
+        }
       }
+    ],
+    overview: [
+      "The goal of the intake project was pretty simple: get at least a 5% improvement out of the Predator 79 cc engine without changing the engine itself.",
+      "The final velocity stack ended up producing a 7.2% average torque increase across the RPM range we tested."
     ]
   },
   {
@@ -463,11 +612,40 @@ export const projects: Project[] = [
         eyebrow: "01",
         title: "Concept",
         body: [
-          "The go-kart is still in the early concept stage.",
-          "I currently have two retired H-E-B shopping carts that I plan to cut apart and use as the starting structure for the chassis.",
-          "The current plan is to bolt usable sections of the carts together instead of welding them. The cart geometry makes weld preparation difficult, and I do not yet have verified material information for the carts, so I am not making any claims about the exact alloy or weldability.",
-          "Right now the main goal is getting a basic chassis layout established before moving further into the other systems."
-        ]
+          "The go-kart is still very early in development, so I do not want to make the page look more finished than the project actually is.",
+          "Right now I have two retired H-E-B shopping carts that I plan to cut apart and use as the starting point for the chassis. The current idea is to bolt usable sections together instead of welding the cart frames."
+        ],
+        bodyAfterMedia: [
+          "The cart geometry makes weld preparation difficult, and I still do not have verified material information for the carts, so I am not making claims about the exact alloy or how well it would weld.",
+          "For now I am working through the overall kart layout and how the two carts could become one usable frame. I have some early full-kart concepts, but the drivetrain, steering, braking, and final chassis design are not finished yet."
+        ],
+        mediaOverrides: {
+          "01-original-kart-concept": {
+            caption: "Original Go-Kart Concept",
+            description: "This was the first design I came up with after talking with my friends. We originally assumed we would weld the chassis and buy the engine, braking system, and wheel kit.\n\nCost became a problem pretty quickly, especially once we looked at what welding the chassis would actually take. After I wrote this first concept and talked through it with the group, we also decided to include suspension and move toward a smaller engine.",
+            alt: "Original Go-Kart Concept"
+          },
+          "02-kart-concept": {
+            caption: "Early Go-Kart Concept",
+            alt: "Early Go-Kart Concept"
+          },
+          "03-kart-concept": {
+            caption: "Alternative Go-Kart Concept",
+            alt: "Alternative Go-Kart Concept"
+          },
+          "04-kart-concept": {
+            caption: "Later Go-Kart Concept",
+            alt: "Later Go-Kart Concept"
+          },
+          "01-overall-kart-concept": {
+            caption: "Early overall go-kart concept.",
+            alt: "Early overall go-kart concept."
+          },
+          "02-overall-kart-concept": {
+            caption: "Alternative early overall go-kart concept.",
+            alt: "Alternative early overall go-kart concept."
+          }
+        }
       }
     ],
     status: "In Development"
