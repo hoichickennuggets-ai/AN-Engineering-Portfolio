@@ -41,9 +41,8 @@
 .button:hover, .hero .button:hover, .button-light:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 .button-secondary, .hero .button-secondary { background: var(--surface); color: var(--accent-ink); border-color: var(--border-strong); }
 .button-secondary:hover, .hero .button-secondary:hover { background: #fff; color: var(--accent-hover); border-color: var(--accent-strong); }
-.hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; margin: 0; border: 0; border-radius: 4px; overflow: hidden; background: var(--background); }
-.hero-photo::after, .project-hero-image-wide::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, var(--background), transparent 4%, transparent 96%, var(--background)), linear-gradient(0deg, var(--background), transparent 4%, transparent 96%, var(--background)); }
-.hero-photo-slide { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 180ms ease-out; }
+.hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; margin: 0; border: 0; background: transparent; }
+.hero-photo-slide { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; opacity: 0; transition: opacity 180ms ease-out; filter: drop-shadow(0 0 12px #90b6cd55); }
 .hero-photo-slide.is-active { opacity: 1; }
 .featured { background: transparent; }
 .home-skills { background: var(--surface); }

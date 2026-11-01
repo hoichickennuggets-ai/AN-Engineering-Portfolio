@@ -652,4 +652,11 @@ export const projects: Project[] = [
   }
 ]
 
+const projectPriority = ['baja-sae-chassis', 'react-mission', 'velocity-stack', 'dragster', 'go-kart', 'engine-rebuild']
+projects.sort((a, b) => {
+  const aIndex = projectPriority.indexOf(a.slug)
+  const bIndex = projectPriority.indexOf(b.slug)
+  return (aIndex < 0 ? projectPriority.length : aIndex) - (bIndex < 0 ? projectPriority.length : bIndex)
+})
+
 export const findProject = (slug: string) => projects.find((project) => project.slug === slug)
