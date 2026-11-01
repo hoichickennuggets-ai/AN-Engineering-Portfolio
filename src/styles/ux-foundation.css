@@ -77,7 +77,7 @@
 .project-hero-image, .project-hero-image .media { background: var(--media-well); }
 .project-card:focus-within { border-color: var(--accent); box-shadow: 0 8px 20px #0d2f4f14; }
 .page-intro, .section-heading, .chapter-copy, .section-intro, .project-subtitle, .experience-description, .contact-page { text-align: left; }
-.page-intro > p, .chapter-copy p, .section-intro { max-width: 62ch; margin-inline: 0; }
+.page-intro > p { max-width: 62ch; margin-inline: 0; }
 .tags li { background: var(--surface-blue); color: var(--text-primary); border-color: var(--border); }
 .metrics > div { background: var(--surface-blue); border-color: var(--border); min-width: 0; }
 .metrics span { color: var(--text-primary); }
@@ -91,12 +91,9 @@
 
 /* Both legacy sections and new chapters remain stacked, at their natural height. */
 .project-section { position: relative; }
-.project-section p, .project-section .section-intro, .technical-list, .process-list, .chapter-copy { max-width: 62ch; }
+.technical-list, .process-list { max-width: 62ch; }
 .project-section:focus-within { opacity: 1 !important; }
-.section-chapter { padding-block: clamp(36px, 6vw, 80px); }
 .section-chapter .eyebrow { color: var(--accent-ink); }
-.section-chapter .metrics { margin: 24px 0; }
-.section-chapter .project-slideshow { margin-top: 28px; }
 .project-slideshow { max-width: 100%; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); overflow: hidden; }
 .slideshow-viewport { touch-action: pan-y pinch-zoom; }
 .slideshow-slide { margin: 0; }
@@ -168,7 +165,6 @@ dialog.lightbox::backdrop { background: #27323aeb; }
   .project-summary p { font-size: 1.05rem; }
   .slideshow-slide .media-button { height: clamp(240px, 76vw, 390px); }
   .slideshow-slide figcaption { padding: 12px 14px; font-size: .85rem; }
-  .section-chapter { padding-block: 36px; }
   .metrics { grid-template-columns: 1fr; }
   .contact-list strong { overflow-wrap: anywhere; }
   .contact-list a { min-width: 0; }
@@ -197,8 +193,7 @@ dialog.lightbox::backdrop { background: #27323aeb; }
   .hero-actions { gap: 8px; }
   .hero-actions .button { min-height: 44px; padding: 10px 15px; font-size: .82rem; }
   .hero-with-photo { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; }
-  .hero-photo { max-width: 440px; aspect-ratio: 1.05; justify-self: start; }
-  .hero-photo { max-height: 420px; }
+  .hero-photo { max-width: 500px; max-height: 470px; aspect-ratio: 1.05; justify-self: start; }
 
   .page-section { padding-block: 56px; }
   .section-heading { margin-bottom: 26px; }
@@ -233,9 +228,7 @@ dialog.lightbox::backdrop { background: #27323aeb; }
   .project-hero-image, .project-hero-image .media { height: 290px; }
   .project-summary { margin-block: 36px; padding-left: 18px; }
   .project-summary p { font-size: 1.02rem; }
-  .section-chapter { padding-block: clamp(30px, 4.8vw, 64px); }
   .section-chapter h2, .project-section h2 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
-  .section-chapter .project-slideshow { margin-top: 22px; }
   .slideshow-slide .media-button { height: clamp(220px, 40vw, 460px); }
   .slideshow-slide figcaption { padding: 12px 14px; }
   .slideshow-controls { gap: 14px; padding-bottom: 10px; }

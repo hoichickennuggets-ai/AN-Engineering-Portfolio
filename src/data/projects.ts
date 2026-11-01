@@ -240,6 +240,8 @@ export const projects: Project[] = [
   {
     slug: "dragster",
     title: "Dragster Design",
+    cardMediaFolder: "project-media/dragster/01-gallery",
+    cardPreferredBasename: "01-dragster-cad",
     category: "Vehicle Design",
     subtitle: "CAD and engineering drawing from a dragster design project.",
     summary: "CAD and engineering drawing from a dragster design project.",
@@ -597,6 +599,8 @@ export const projects: Project[] = [
   {
     slug: "go-kart",
     title: "Go-Kart",
+    cardMediaFolder: "project-media/go-kart/01-concept",
+    cardPreferredBasename: "01-original-kart-concept",
     role: "Personal Project",
     category: "Personal Projects",
     subtitle: "The go-kart is still in the early concept stage.",
@@ -626,16 +630,16 @@ export const projects: Project[] = [
             alt: "Original Go-Kart Concept"
           },
           "02-kart-concept": {
-            caption: "Early Go-Kart Concept",
-            alt: "Early Go-Kart Concept"
+            caption: "Alternative Go-Kart Concept",
+            alt: "Alternative Go-Kart Concept"
           },
           "03-kart-concept": {
             caption: "Alternative Go-Kart Concept",
             alt: "Alternative Go-Kart Concept"
           },
           "04-kart-concept": {
-            caption: "Later Go-Kart Concept",
-            alt: "Later Go-Kart Concept"
+            caption: "Alternative Go-Kart Concept",
+            alt: "Alternative Go-Kart Concept"
           },
           "01-overall-kart-concept": {
             caption: "Early overall go-kart concept.",

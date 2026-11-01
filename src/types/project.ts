@@ -46,6 +46,9 @@ export interface Project {
   date?: string
   category: string
   heroImage?: ProjectImage
+  // Optional card image selected from the same discovered media as the gallery.
+  cardMediaFolder?: string
+  cardPreferredBasename?: string
   // A project-detail hero drawn from src/assets/project-media/. When set, this
   // takes precedence over heroImage on the detail page only.
   heroMediaFolder?: string

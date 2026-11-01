@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 
+// Hero slideshow duration in milliseconds. 4000 = 4 seconds.
 const intervalMs = 4000
 
 export function HomeHeroSlideshow({ images, alt }: { images: string[]; alt: string }) {

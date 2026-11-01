@@ -62,3 +62,12 @@ export function projectHeroImage(project: Project): ProjectImage | undefined {
     mediaFit: 'contain',
   }
 }
+
+export function projectCardImage(project: Project): ProjectImage | undefined {
+  if (!project.cardMediaFolder || !project.cardPreferredBasename) return project.heroImage
+  const preferred = project.cardPreferredBasename.toLowerCase()
+  const file = (mediaByFolder[project.cardMediaFolder] ?? [])
+    .find(item => item.filename.replace(/\.[^.]+$/, '').toLowerCase() === preferred)
+  if (!file) return project.heroImage
+  return chapterImages({ mediaFolder: project.cardMediaFolder }).find(image => image.src === file.src)
+}
