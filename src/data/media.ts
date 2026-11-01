@@ -1,4 +1,4 @@
-import type { ProjectChapter, ProjectImage } from '../types/project'
+import type { Project, ProjectChapter, ProjectImage } from '../types/project'
 
 // Shared discovery for all projects/experiences. Vite emits base-aware asset URLs.
 const files = import.meta.glob<string>(
@@ -27,9 +27,9 @@ export function chapterImages(chapter: ProjectChapter): ProjectImage[] {
     return { filename, image: { ...image, ...overrides[filename] } }
   })
   const folderFiles = mediaByFolder[chapter.mediaFolder ?? ''] ?? []
-  const discovered = folderFiles.map(({ filename, src }) => {
+  const discovered = folderFiles.map(({ filename, src }, index) => {
     const caption = filenameCaption(filename)
-    return { filename, image: { src, alt: caption, caption, ...overrides[filename] } }
+    return { filename, image: { src, alt: caption, caption, ...chapter.mediaSequenceOverrides?.[index], ...overrides[filename] } }
   })
   const seen = new Set<string>()
   // Preserve curated metadata when a numbered copy of a legacy file is added.
@@ -43,4 +43,18 @@ export function chapterImages(chapter: ProjectChapter): ProjectImage[] {
       return true
     })
     .map(({ image }) => image)
+}
+
+export function projectHeroImage(project: Project): ProjectImage | undefined {
+  if (!project.heroMediaFolder) return project.heroImage
+  const files = mediaByFolder[project.heroMediaFolder] ?? []
+  const basename = (filename: string) => filename.replace(/\.[^.]+$/, '').toLowerCase()
+  const preferred = project.heroPreferredBasename?.toLowerCase()
+  const selected = files.find(file => basename(file.filename) === preferred) ?? files[0]
+  return selected && {
+    src: selected.src,
+    alt: `${project.title} project hero image`,
+    caption: filenameCaption(selected.filename),
+    mediaFit: 'contain',
+  }
 }

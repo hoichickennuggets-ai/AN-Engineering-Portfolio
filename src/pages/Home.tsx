@@ -6,10 +6,11 @@ import { projects } from '../data/projects'
 import { ProjectCard } from '../components/ProjectCard'
 import { ExperienceCard } from '../components/ExperienceCard'
 import { experiences } from '../data/experience'
+import { HomeHeroSlideshow } from '../components/HomeHeroSlideshow'
 
 export function Home() {
   return <main>
-    <section className={`hero${profile.heroImage ? ' hero-with-photo' : ''}`}>
+    <section className={`hero${profile.homeHeroImages.length ? ' hero-with-photo' : ''}`}>
       <div className="hero-content">
         <p className="eyebrow">{profile.school}</p>
         <h1>{profile.name}<span>{profile.title}</span></h1>
@@ -21,7 +22,7 @@ export function Home() {
           <Link className="button button-secondary" to="/contact">Contact Me</Link>
         </div>
       </div>
-      {profile.heroImage && <figure className="hero-photo"><img src={profile.heroImage} alt={profile.heroAlt} fetchPriority="high" /></figure>}
+      <HomeHeroSlideshow images={profile.homeHeroImages} alt={profile.heroAlt} />
     </section>
     <section className="page-section home-experience" aria-labelledby="home-experience-title">
       <div className="section-heading"><div><p className="eyebrow">{home.experienceEyebrow}</p><h2 id="home-experience-title">{home.experienceTitle}</h2></div>

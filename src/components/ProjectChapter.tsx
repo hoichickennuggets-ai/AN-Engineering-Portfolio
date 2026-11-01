@@ -10,7 +10,12 @@ export function ProjectChapter({ chapter }: { chapter: ProjectChapterData }) {
     {chapter.eyebrow && <p className="eyebrow">{chapter.eyebrow}</p>}
     <h2>{chapter.title}</h2>
     <div className="chapter-copy">{chapter.body?.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>
-    {!!chapter.metrics?.length && <ProjectMetrics items={chapter.metrics} />}
     {!!images.length && <ProjectSlideshow images={images} label={chapter.title} mediaFit={chapter.mediaFit} />}
+    {chapter.bodyAfterMedia?.length ? <div className="chapter-copy chapter-copy-after-media">{chapter.bodyAfterMedia.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div> : null}
+    {!!chapter.metrics?.length && <ProjectMetrics items={chapter.metrics} />}
+    {chapter.engineeringStories?.map(story => <details className="engineering-story" key={story.title}>
+      <summary>{story.title}</summary>
+      <div className="chapter-copy">{story.body?.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>
+    </details>)}
   </ScrollChapter>
 }
